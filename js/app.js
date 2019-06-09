@@ -10,6 +10,7 @@ let quesArr;
 let rightAnswer;
 let p1 = new player(0,0);
 
+
 let dataArray = [
 {
     name: "Afghanistan",
@@ -860,6 +861,8 @@ class UiUpdate {
 
 let uiUpdate = new UiUpdate();
 
+
+
 let shuffleArray = function(arr){
     let n = arr.length-1,shuffleIndex,temp;
     while(n>=1){
@@ -899,9 +902,7 @@ let questionSetter = function(n){
         obj.style.border = "none";
     }
     if(n<0){
-        for(obj of document.querySelectorAll(".answer")){
-            obj.removeEventListener("click",checkAnswer);
-        }
+            removeEventListener();        
         endGame();
     }
     else{
@@ -910,8 +911,9 @@ let questionSetter = function(n){
         rightAnswer = dataArray[n];
         uiUpdate.updateFlag(rightAnswer.src);
         uiUpdate.updateOptions(quesArr);
+        setEventListener();
     } 
-    setEventListener();
+    
 
 }
 
@@ -922,6 +924,12 @@ let checkAnswer = function(){
             if(option === rightAnswer.name){
                 this.style.border = "4px solid #29EE3C";
                 uiUpdate.updateScore();
+                if(p1.playerMode==="One Shot. One Kill."){
+                    setTimeout(function(){
+                        questionN -=1;
+                        questionSetter(questionN);
+                    },1000);
+                }
             }
             else if(option!=rightAnswer.name){
                 this.style.border = "4px solid #FF2727";
@@ -930,12 +938,24 @@ let checkAnswer = function(){
                         right.style.border = "4px solid #29EE3C";
                     }
                 }
-                uiUpdate.updateAttempts();
+                if(p1.playerMode==="Spray and Prey"){
+                    uiUpdate.updateAttempts();
+                }
+                else{
+                    setTimeout(function(){
+                        endGame();
+                    },1000);
+                }
+                
             }
-            questionN -=1;
-            setTimeout(function(){
-                questionSetter(questionN);
-            },1000);
+            
+            if(p1.playerMode==="Spray and Prey"){
+                setTimeout(function(){
+                    questionN -=1;
+                    questionSetter(questionN);
+                },1000);
+            }
+            
 }
 
 let setEventListener = function(){
@@ -950,22 +970,16 @@ let removeEventListener = function(){
     }
 }
 
-let sprayAndPreyGameEngine = function(n){
-    questionSetter(n);
-    setEventListener();
-    
-    
-}
-
 
 
 
 let sprayAndPrey = function(){
-    sprayAndPreyGameEngine(dataArray.length-1);
+    questionSetter(dataArray.length-1);
 }
 
 let oneShot = function(){
     uiUpdate.removeAttempts();
+    questionSetter(dataArray.length-1);
 
 }
 
@@ -983,6 +997,10 @@ let gameSelection = function(arg){
         oneShot();
     }
 }
+
+
+
+
 
 var gameMode =  document.querySelectorAll(".game-select");
 
