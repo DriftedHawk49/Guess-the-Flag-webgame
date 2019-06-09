@@ -1,13 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Guess the Flag</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link href="https://fonts.googleapis.com/css?family=Nunito:700&display=swap" rel="stylesheet">
 </head>
 <body>
+
+	<header>
+		<img src="/assets/images/Logo.png" alt="Logo">
+		<h1>Guess The Flag</h1>
+	</header>
+
+	
+
+	<div class="menu">
+
+		<p class="tagline">1 Flag, 4 Options, 1 Right Answer.</p>
+		<div class="game-select-menu">
+		<div class="game-select">
+			<img src="/assets/images/aim.png" alt="One Shot One Kill">
+			<h2>One Shot. One Kill.</h2>
+			<p>Keep giving right answers, keep on moving.<br>1 Wrong Answer, its done.</p>
+		</div>
+		<div class="game-select">
+			<img class="infinity" src="/assets/images/infinity.png" alt="Spray and Prey">
+			<h2>Spray and Prey</h2>
+			<p>Infinite mode. +1 for correct, and -1 for incorrect. Press End to End the game.</p>
+		</div>
+	</div>
+	</div>
+	
+	<div class="game" style="display:none;"> 
+	<div class="score-bar">
+		<span>Score: <span class="score">0</span></span> 
+		<span class="game-mode">One Shot. One Kill</span>
+		<span>Attempts: <span class="attempts">0</span></span> 
+	</div>
+	<img src="assets/data/afghanistan.png" alt="flag" class="flag">
+	<div class="grid">
+		<div class="answer">answer1</div>
+		<div class="answer">answer2</div>
+		<div class="answer">answer3</div>
+		<div class="answer">answer4</div>
+	</div>
+
+	<p class="note">Remember. No Cheating!</p>
+	</div>
+
+	<div class="end" style="display: none;">
+		<h2>Score: <span class="fscore">20</span> </h2>
+		<h3 class="fgame-mode">One Shot. One Kill.</h3>
+
+		<p>Not Bad! <br> But you can do better ! <br> come prepared next time.</p>
+
+		<a href="#" class="button">Restart</a>
+	</div>
+
+
+
+
+
+
+
 
 
 
 <script src="js/app.js" type="text/javascript"></script>
 </body>
 </html>
+
+
