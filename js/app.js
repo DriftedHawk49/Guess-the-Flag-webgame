@@ -840,35 +840,37 @@ class UiUpdate {
     updateGameMode(arg) {
         document.querySelector(".game-mode").innerText = arg;
     }
-    // Function Remove
+    // Function to remove attempts section for One shot One kill game mode
     removeAttempts() {
         document.querySelectorAll(".score-bar span")[3].innerHTML = "";
     }
+    // Function to update the flag in game question
     updateFlag(src){
         document.querySelector(".flag").src = src;
     }
-    updateOptions(quesArr){
-        
+    // Function to update 4 available options in question
+    updateOptions(quesArr){ 
         let optionArr = document.querySelectorAll(".answer");
-        
         for(let i=0;i<=3;i++){
             optionArr[i].innerText = quesArr[i].name;
         }
     }
+    // Function to increment score and update it in HTML.
     updateScore(){
         p1.score+=1;
         document.querySelector(".score").innerText = p1.score;
     }
+    // Function to Update score and game mode on end page
     updateEndPage(){
         document.querySelector(".fscore").innerText = p1.score;
         document.querySelector(".fgame-mode").innerText = p1.playerMode;
     }
 }
-
+// UI update object
 let uiUpdate = new UiUpdate();
 
 
-
+// Function which shuffles the array it receives. doesn't return the array
 let shuffleArray = function(arr){
     let n = arr.length-1,shuffleIndex,temp;
     while(n>=1){
@@ -881,6 +883,7 @@ let shuffleArray = function(arr){
     
 } 
 
+// Function which generates a question and their 4 options
 let questionArrayGenerator = function(arr,correctIndex){
     let quesArr = [], count = 0, tempIndex;
     while(count<=2){
@@ -897,12 +900,14 @@ let questionArrayGenerator = function(arr,correctIndex){
     return quesArr;
 }
 
+// Function that handles what happens when game ends
 let endGame = function(){
     uiUpdate.hideGame();
     uiUpdate.viewEnd();
     uiUpdate.updateEndPage();
 }
 
+// Function which sets next question 
 let questionSetter = function(n){
     for(obj of document.querySelectorAll(".answer")){
         obj.style.border = "none";
@@ -912,7 +917,6 @@ let questionSetter = function(n){
         endGame();
     }
     else{
-        console.log(n);
         quesArr = questionArrayGenerator(dataArray,n);
         rightAnswer = dataArray[n];
         uiUpdate.updateFlag(rightAnswer.src);
@@ -923,7 +927,9 @@ let questionSetter = function(n){
 
 }
 
-let questionN = dataArray.length-1;
+let questionN = dataArray.length-1;// to keep track of last element, questions start from last element
+
+// function to check the answer selected by user.
 let checkAnswer = function(){
     removeEventListener();
     let option = this.innerText;
@@ -964,12 +970,14 @@ let checkAnswer = function(){
             
 }
 
+// function to set click events on options
 let setEventListener = function(){
     for(btn of document.querySelectorAll(".answer")){
         btn.addEventListener("click",checkAnswer); 
     }
 }
 
+// function to remove events on options
 let removeEventListener = function(){
     for(btn of document.querySelectorAll(".answer")){
         btn.removeEventListener("click",checkAnswer); 
@@ -978,17 +986,19 @@ let removeEventListener = function(){
 
 
 
-
+// initiate spray and prey game mode
 let sprayAndPrey = function(){
     questionSetter(dataArray.length-1);
 }
 
+// inititate one shot game mode
 let oneShot = function(){
     uiUpdate.removeAttempts();
     questionSetter(dataArray.length-1);
 
 }
 
+// game initialiser and Game mode selector according to users feedback
 let gameSelection = function(arg){ 
     let targetText = arg.currentTarget.querySelector("h2").innerText;
     p1.playerMode = targetText;
@@ -1008,11 +1018,11 @@ let gameSelection = function(arg){
 
 
 
-var gameMode =  document.querySelectorAll(".game-select");
+var gameMode =  document.querySelectorAll(".game-select"); // stores the instance of both the game modes to set a click event on both of them.
 
 for(game of gameMode){
     game.addEventListener("click",function(arg){
-        gameSelection(arg);
+        gameSelection(arg); // adding an event to initiate the game when mode is selected.
     });
 }
 
