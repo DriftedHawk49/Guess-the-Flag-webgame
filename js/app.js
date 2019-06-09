@@ -1,3 +1,4 @@
+// Player class for storing different parameters related directly with player
 class player {
     constructor(score,att){
         this.score = score;
@@ -6,835 +7,840 @@ class player {
     }
 }
 
-let quesArr;
-let rightAnswer;
-let p1 = new player(0,0);
+let quesArr; // Stores the 4 options to be displayed during a question
+let rightAnswer; // Stores the right answer to current question
+let p1 = new player(0,0); // New player initialisation
 
-
+// Data with country name and their image URL
 let dataArray = [
 {
     name: "Afghanistan",
-    src: "/assets/data/afghanistan.png"
+    src: "assets/data/afghanistan.png"
 },
 {
     name: "Albania",
-    src: "/assets/data/albania.png"
+    src: "assets/data/albania.png"
 },
 {
     name: "Algeria",
-    src: "/assets/data/algeria.png"
+    src: "assets/data/algeria.png"
 },
 {
     name: "Andorra",
-    src: "/assets/data/andorra.png"
+    src: "assets/data/andorra.png"
 },
 {
     name: "Angola",
-    src: "/assets/data/angola.png"
+    src: "assets/data/angola.png"
 },
 {
     name: "Antigua And Barbuda",
-    src: "/assets/data/antigua_and_barbuda.png"
+    src: "assets/data/antigua_and_barbuda.png"
 },
 {
     name: "Argentina",
-    src: "/assets/data/argentina.png"
+    src: "assets/data/argentina.png"
 },
 {
     name: "Armenia",
-    src: "/assets/data/armenia.png"
+    src: "assets/data/armenia.png"
 },
 {
     name: "Australia",
-    src: "/assets/data/australia.png"
+    src: "assets/data/australia.png"
 },
 {
     name: "Austria",
-    src: "/assets/data/austria.png"
+    src: "assets/data/austria.png"
 },
 {
     name: "Azerbaijan",
-    src: "/assets/data/azerbaijan.png"
+    src: "assets/data/azerbaijan.png"
 },
 {
     name: "Bahamas",
-    src: "/assets/data/bahamas.png"
+    src: "assets/data/bahamas.png"
 },
 {
     name: "Bahrain",
-    src: "/assets/data/bahrain.png"
+    src: "assets/data/bahrain.png"
 },
 {
     name: "Bangladesh",
-    src: "/assets/data/bangladesh.png"
+    src: "assets/data/bangladesh.png"
 },
 {
     name: "Barbados",
-    src: "/assets/data/barbados.png"
+    src: "assets/data/barbados.png"
 },
 {
     name: "Belarus",
-    src: "/assets/data/belarus.png"
+    src: "assets/data/belarus.png"
 },
 {
     name: "Belgium",
-    src: "/assets/data/belgium.png"
+    src: "assets/data/belgium.png"
 },
 {
     name: "Belize",
-    src: "/assets/data/belize.png"
+    src: "assets/data/belize.png"
 },
 {
     name: "Benin",
-    src: "/assets/data/benin.png"
+    src: "assets/data/benin.png"
 },
 {
     name: "Bhutan",
-    src: "/assets/data/bhutan.png"
+    src: "assets/data/bhutan.png"
 },
 {
     name: "Bolivia",
-    src: "/assets/data/bolivia.png"
+    src: "assets/data/bolivia.png"
 },
 {
     name: "Bosnia And Herzegovina",
-    src: "/assets/data/bosnia_and_herzegovina.png"
+    src: "assets/data/bosnia_and_herzegovina.png"
 },
 {
     name: "Botswana",
-    src: "/assets/data/botswana.png"
+    src: "assets/data/botswana.png"
 },
 {
     name: "Brazil",
-    src: "/assets/data/brazil.png"
+    src: "assets/data/brazil.png"
 },
 {
     name: "Brunei",
-    src: "/assets/data/brunei.png"
+    src: "assets/data/brunei.png"
 },
 {
     name: "Bulgaria",
-    src: "/assets/data/bulgaria.png"
+    src: "assets/data/bulgaria.png"
 },
 {
     name: "Burkina Faso",
-    src: "/assets/data/burkina_faso.png"
+    src: "assets/data/burkina_faso.png"
 },
 {
     name: "Burundi",
-    src: "/assets/data/burundi.png"
+    src: "assets/data/burundi.png"
 },
 {
     name: "Cambodia",
-    src: "/assets/data/cambodia.png"
+    src: "assets/data/cambodia.png"
 },
 {
     name: "Cameroon",
-    src: "/assets/data/cameroon.png"
+    src: "assets/data/cameroon.png"
 },
 {
     name: "Canada",
-    src: "/assets/data/canada.png"
+    src: "assets/data/canada.png"
 },
 {
     name: "Cape Verde",
-    src: "/assets/data/cape_verde.png"
+    src: "assets/data/cape_verde.png"
 },
 {
     name: "Central African Republic",
-    src: "/assets/data/central_african_republic.png"
+    src: "assets/data/central_african_republic.png"
 },
 {
     name: "Chad",
-    src: "/assets/data/chad.png"
+    src: "assets/data/chad.png"
 },
 {
     name: "Chile",
-    src: "/assets/data/chile.png"
+    src: "assets/data/chile.png"
 },
 {
     name: "Colombia",
-    src: "/assets/data/colombia.png"
+    src: "assets/data/colombia.png"
 },
 {
     name: "Cook Islands",
-    src: "/assets/data/cook_islands.png"
+    src: "assets/data/cook_islands.png"
 },
 {
     name: "Costa Rica",
-    src: "/assets/data/costa_rica.png"
+    src: "assets/data/costa_rica.png"
 },
 {
     name: "Cote D'ivoire",
-    src: "/assets/data/Cote_divoire.png"
+    src: "assets/data/Cote_divoire.png"
 },
 {
     name: "Croatia",
-    src: "/assets/data/croatia.png"
+    src: "assets/data/croatia.png"
 },
 {
     name: "Cuba",
-    src: "/assets/data/cuba.png"
+    src: "assets/data/cuba.png"
 },
 {
     name: "Cyprus",
-    src: "/assets/data/cyprus.png"
+    src: "assets/data/cyprus.png"
 },
 {
     name: "Czech Republic",
-    src: "/assets/data/czech_republic.png"
+    src: "assets/data/czech_republic.png"
 },
 {
     name: "Democratic Republic of The Congo",
-    src: "/assets/data/democratic_republic_of_the_congo.png"
+    src: "assets/data/democratic_republic_of_the_congo.png"
 },
 {
     name: "Denmark",
-    src: "/assets/data/denmark.png"
+    src: "assets/data/denmark.png"
 },
 {
     name: "Djibouti",
-    src: "/assets/data/djibouti.png"
+    src: "assets/data/djibouti.png"
 },
 {
     name: "Dominica",
-    src: "/assets/data/dominica.png"
+    src: "assets/data/dominica.png"
 },
 {
     name: "Dominican Republic",
-    src: "/assets/data/dominican_republic.png"
+    src: "assets/data/dominican_republic.png"
 },
 {
     name: "East Timor",
-    src: "/assets/data/east_timor.png"
+    src: "assets/data/east_timor.png"
 },
 {
     name: "Ecuador",
-    src: "/assets/data/ecuador.png"
+    src: "assets/data/ecuador.png"
 },
 {
     name: "Egypt",
-    src: "/assets/data/egypt.png"
+    src: "assets/data/egypt.png"
 },
 {
     name: "El Salvador",
-    src: "/assets/data/el_salvador.png"
+    src: "assets/data/el_salvador.png"
 },
 {
     name: "Equatorial Guinea",
-    src: "/assets/data/equatorial_guinea.png"
+    src: "assets/data/equatorial_guinea.png"
 },
 {
     name: "Eritrea",
-    src: "/assets/data/eritrea.png"
+    src: "assets/data/eritrea.png"
 },
 {
     name: "Estonia",
-    src: "/assets/data/estonia.png"
+    src: "assets/data/estonia.png"
 },
 {
     name: "Ethiopia",
-    src: "/assets/data/ethiopia.png"
+    src: "assets/data/ethiopia.png"
 },
 {
     name: "Fiji",
-    src: "/assets/data/fiji.png"
+    src: "assets/data/fiji.png"
 },
 {
     name: "Finland",
-    src: "/assets/data/finland.png"
+    src: "assets/data/finland.png"
 },
 {
     name: "France",
-    src: "/assets/data/france.png"
+    src: "assets/data/france.png"
 },
 {
     name: "Gabon",
-    src: "/assets/data/gabon.png"
+    src: "assets/data/gabon.png"
 },
 {
     name: "Gambia",
-    src: "/assets/data/gambia.png"
+    src: "assets/data/gambia.png"
 },
 {
     name: "Georgia",
-    src: "/assets/data/georgia.png"
+    src: "assets/data/georgia.png"
 },
 {
     name: "Germany",
-    src: "/assets/data/germany.png"
+    src: "assets/data/germany.png"
 },
 {
     name: "Ghana",
-    src: "/assets/data/ghana.png"
+    src: "assets/data/ghana.png"
 },
 {
     name: "Greece",
-    src: "/assets/data/greece.png"
+    src: "assets/data/greece.png"
 },
 {
     name: "Grenada",
-    src: "/assets/data/grenada.png"
+    src: "assets/data/grenada.png"
 },
 {
     name: "Guatemala",
-    src: "/assets/data/guatemala.png"
+    src: "assets/data/guatemala.png"
 },
 {
     name: "Guinea",
-    src: "/assets/data/guinea.png"
+    src: "assets/data/guinea.png"
 },
 {
     name: "Guinea Bissau",
-    src: "/assets/data/guinea_bissau.png"
+    src: "assets/data/guinea_bissau.png"
 },
 {
     name: "Guyana",
-    src: "/assets/data/guyana.png"
+    src: "assets/data/guyana.png"
 },
 {
     name: "Haiti",
-    src: "/assets/data/haiti.png"
+    src: "assets/data/haiti.png"
 },
 {
     name: "Honduras",
-    src: "/assets/data/honduras.png"
+    src: "assets/data/honduras.png"
 },
 {
     name: "Hungary",
-    src: "/assets/data/hungary.png"
+    src: "assets/data/hungary.png"
 },
 {
     name: "Iceland",
-    src: "/assets/data/iceland.png"
+    src: "assets/data/iceland.png"
 },
 {
     name: "India",
-    src: "/assets/data/india.png"
+    src: "assets/data/india.png"
 },
 {
     name: "Indonesia",
-    src: "/assets/data/indonesia.png"
+    src: "assets/data/indonesia.png"
 },
 {
     name: "Iran",
-    src: "/assets/data/iran.png"
+    src: "assets/data/iran.png"
 },
 {
     name: "Iraq",
-    src: "/assets/data/iraq.png"
+    src: "assets/data/iraq.png"
 },
 {
     name: "Ireland",
-    src: "/assets/data/ireland.png"
+    src: "assets/data/ireland.png"
 },
 {
     name: "Israel",
-    src: "/assets/data/israel.png"
+    src: "assets/data/israel.png"
 },
 {
     name: "Italy",
-    src: "/assets/data/italy.png"
+    src: "assets/data/italy.png"
 },
 {
     name: "Jamaica",
-    src: "/assets/data/jamaica.png"
+    src: "assets/data/jamaica.png"
 },
 {
     name: "Japan",
-    src: "/assets/data/japan.png"
+    src: "assets/data/japan.png"
 },
 {
     name: "Jordan",
-    src: "/assets/data/jordan.png"
+    src: "assets/data/jordan.png"
 },
 {
     name: "Kazakhstan",
-    src: "/assets/data/kazakhstan.png"
+    src: "assets/data/kazakhstan.png"
 },
 {
     name: "Kenya",
-    src: "/assets/data/kenya.png"
+    src: "assets/data/kenya.png"
 },
 {
     name: "Kirbati",
-    src: "/assets/data/kirbati.png"
+    src: "assets/data/kirbati.png"
 },
 {
     name: "Kosovo",
-    src: "/assets/data/kosovo.png"
+    src: "assets/data/kosovo.png"
 },
 {
     name: "Kuwait",
-    src: "/assets/data/kuwait.png"
+    src: "assets/data/kuwait.png"
 },
 {
     name: "Kyrgyzstan",
-    src: "/assets/data/kyrgyzstan.png"
+    src: "assets/data/kyrgyzstan.png"
 },
 {
     name: "Laos",
-    src: "/assets/data/laos.png"
+    src: "assets/data/laos.png"
 },
 {
     name: "Latvia",
-    src: "/assets/data/latvia.png"
+    src: "assets/data/latvia.png"
 },
 {
     name: "Lebanon",
-    src: "/assets/data/lebanon.png"
+    src: "assets/data/lebanon.png"
 },
 {
     name: "Lesotho",
-    src: "/assets/data/lesotho.png"
+    src: "assets/data/lesotho.png"
 },
 {
     name: "Liberia",
-    src: "/assets/data/liberia.png"
+    src: "assets/data/liberia.png"
 },
 {
     name: "Libya",
-    src: "/assets/data/libya.png"
+    src: "assets/data/libya.png"
 },
 {
     name: "Liechtenstein",
-    src: "/assets/data/liechtenstein.png"
+    src: "assets/data/liechtenstein.png"
 },
 {
     name: "Lithuania",
-    src: "/assets/data/lithuania.png"
+    src: "assets/data/lithuania.png"
 },
 {
     name: "Luxemborg",
-    src: "/assets/data/luxemborg.png"
+    src: "assets/data/luxemborg.png"
 },
 {
     name: "Macedonia",
-    src: "/assets/data/macedonia.png"
+    src: "assets/data/macedonia.png"
 },
 {
     name: "Madagascar",
-    src: "/assets/data/madagascar.png"
+    src: "assets/data/madagascar.png"
 },
 {
     name: "Malawi",
-    src: "/assets/data/malawi.png"
+    src: "assets/data/malawi.png"
 },
 {
     name: "Malaysia",
-    src: "/assets/data/malaysia.png"
+    src: "assets/data/malaysia.png"
 },
 {
     name: "Maldives",
-    src: "/assets/data/maldives.png"
+    src: "assets/data/maldives.png"
 },
 {
     name: "Mali",
-    src: "/assets/data/mali.png"
+    src: "assets/data/mali.png"
 },
 {
     name: "Malta",
-    src: "/assets/data/malta.png"
+    src: "assets/data/malta.png"
 },
 {
     name: "Marshall Islands",
-    src: "/assets/data/marshall_islands.png"
+    src: "assets/data/marshall_islands.png"
 },
 {
     name: "Mauritania",
-    src: "/assets/data/mauritania.png"
+    src: "assets/data/mauritania.png"
 },
 {
     name: "Mauritius",
-    src: "/assets/data/mauritius.png"
+    src: "assets/data/mauritius.png"
 },
 {
     name: "Mexico",
-    src: "/assets/data/mexico.png"
+    src: "assets/data/mexico.png"
 },
 {
     name: "Micronesia",
-    src: "/assets/data/micronesia.png"
+    src: "assets/data/micronesia.png"
 },
 {
     name: "Moldova",
-    src: "/assets/data/moldova.png"
+    src: "assets/data/moldova.png"
 },
 {
     name: "Monaco",
-    src: "/assets/data/monaco.png"
+    src: "assets/data/monaco.png"
 },
 {
     name: "Mongolia",
-    src: "/assets/data/mongolia.png"
+    src: "assets/data/mongolia.png"
 },
 {
     name: "Montenegro",
-    src: "/assets/data/montenegro.png"
+    src: "assets/data/montenegro.png"
 },
 {
     name: "Morocco",
-    src: "/assets/data/morocco.png"
+    src: "assets/data/morocco.png"
 },
 {
     name: "Mozambique",
-    src: "/assets/data/mozambique.png"
+    src: "assets/data/mozambique.png"
 },
 {
     name: "Myanmar",
-    src: "/assets/data/myanmar.png"
+    src: "assets/data/myanmar.png"
 },
 {
     name: "Namibia",
-    src: "/assets/data/namibia.png"
+    src: "assets/data/namibia.png"
 },
 {
     name: "Nauru",
-    src: "/assets/data/nauru.png"
+    src: "assets/data/nauru.png"
 },
 {
     name: "Nepal",
-    src: "/assets/data/nepal.png"
+    src: "assets/data/nepal.png"
 },
 {
     name: "Netherlands",
-    src: "/assets/data/netherlands.png"
+    src: "assets/data/netherlands.png"
 },
 {
     name: "New Zealand",
-    src: "/assets/data/new_zealand.png"
+    src: "assets/data/new_zealand.png"
 },
 {
     name: "Nicaragua",
-    src: "/assets/data/nicaragua.png"
+    src: "assets/data/nicaragua.png"
 },
 {
     name: "Niger",
-    src: "/assets/data/Niger.png"
+    src: "assets/data/Niger.png"
 },
 {
     name: "Nigeria",
-    src: "/assets/data/nigeria.png"
+    src: "assets/data/nigeria.png"
 },
 {
     name: "Niue",
-    src: "/assets/data/niue.png"
+    src: "assets/data/niue.png"
 },
 {
     name: "North Korea",
-    src: "/assets/data/north_korea.png"
+    src: "assets/data/north_korea.png"
 },
 {
     name: "Norway",
-    src: "/assets/data/norway.png"
+    src: "assets/data/norway.png"
 },
 {
     name: "Oman",
-    src: "/assets/data/oman.png"
+    src: "assets/data/oman.png"
 },
 {
     name: "Pakistan",
-    src: "/assets/data/pakistan.png"
+    src: "assets/data/pakistan.png"
 },
 {
     name: "Palau",
-    src: "/assets/data/palau.png"
+    src: "assets/data/palau.png"
 },
 {
     name: "Panama",
-    src: "/assets/data/panama.png"
+    src: "assets/data/panama.png"
 },
 {
     name: "Papua New Guinea",
-    src: "/assets/data/papua_new_guinea.png"
+    src: "assets/data/papua_new_guinea.png"
 },
 {
     name: "Paraguay",
-    src: "/assets/data/paraguay.png"
+    src: "assets/data/paraguay.png"
 },
 {
     name: "People's Republic Of China",
-    src: "/assets/data/peoples_republic_of_china.png"
+    src: "assets/data/peoples_republic_of_china.png"
 },
 {
     name: "Peru",
-    src: "/assets/data/peru.png"
+    src: "assets/data/peru.png"
 },
 {
     name: "Philippines",
-    src: "/assets/data/philippines.png"
+    src: "assets/data/philippines.png"
 },
 {
     name: "Poland",
-    src: "/assets/data/poland.png"
+    src: "assets/data/poland.png"
 },
 {
     name: "Portugal",
-    src: "/assets/data/portugal.png"
+    src: "assets/data/portugal.png"
 },
 {
     name: "Qatar",
-    src: "/assets/data/qatar.png"
+    src: "assets/data/qatar.png"
 },
 {
     name: "Republic Of China",
-    src: "/assets/data/republic_of_china.png"
+    src: "assets/data/republic_of_china.png"
 },
 {
     name: "Republic Of Congo",
-    src: "/assets/data/republic_of_congo.png"
+    src: "assets/data/republic_of_congo.png"
 },
 {
     name: "Romania",
-    src: "/assets/data/romania.png"
+    src: "assets/data/romania.png"
 },
 {
     name: "Russia",
-    src: "/assets/data/russia.png"
+    src: "assets/data/russia.png"
 },
 {
     name: "Rwanda",
-    src: "/assets/data/rwanda.png"
+    src: "assets/data/rwanda.png"
 },
 {
     name: "Saint Kitts and Nevis",
-    src: "/assets/data/saint_kitts_and_nevis.png"
+    src: "assets/data/saint_kitts_and_nevis.png"
 },
 {
     name: "Saint Lucia",
-    src: "/assets/data/saint_lucia.png"
+    src: "assets/data/saint_lucia.png"
 },
 {
     name: "Saint Vincent and the Grenadines",
-    src: "/assets/data/saint_vincent_and_the_grenadines.png"
+    src: "assets/data/saint_vincent_and_the_grenadines.png"
 },
 {
     name: "Samoa",
-    src: "/assets/data/samoa.png"
+    src: "assets/data/samoa.png"
 },
 {
     name: "San Marino",
-    src: "/assets/data/san_marino.png"
+    src: "assets/data/san_marino.png"
 },
 {
     name: "Sao Tome and Principe",
-    src: "/assets/data/sao_tome_and_principe.png"
+    src: "assets/data/sao_tome_and_principe.png"
 },
 {
     name: "Saudi Arabia",
-    src: "/assets/data/saudi_arabia.png"
+    src: "assets/data/saudi_arabia.png"
 },
 {
     name: "Senegal",
-    src: "/assets/data/senegal.png"
+    src: "assets/data/senegal.png"
 },
 {
     name: "Serbia",
-    src: "/assets/data/serbia.png"
+    src: "assets/data/serbia.png"
 },
 {
     name: "Seychelles",
-    src: "/assets/data/seychelles.png"
+    src: "assets/data/seychelles.png"
 },
 {
     name: "Sierra Leone",
-    src: "/assets/data/sierra_leone.png"
+    src: "assets/data/sierra_leone.png"
 },
 {
     name: "Singapore",
-    src: "/assets/data/singapore.png"
+    src: "assets/data/singapore.png"
 },
 {
     name: "Slovakia",
-    src: "/assets/data/slovakia.png"
+    src: "assets/data/slovakia.png"
 },
 {
     name: "Slovenia",
-    src: "/assets/data/slovenia.png"
+    src: "assets/data/slovenia.png"
 },
 {
     name: "Solomon Islands",
-    src: "/assets/data/solomon_islands.png"
+    src: "assets/data/solomon_islands.png"
 },
 {
     name: "Somalia",
-    src: "/assets/data/somalia.png"
+    src: "assets/data/somalia.png"
 },
 {
     name: "South Africa",
-    src: "/assets/data/south_africa.png"
+    src: "assets/data/south_africa.png"
 },
 {
     name: "South Korea",
-    src: "/assets/data/south_korea.png"
+    src: "assets/data/south_korea.png"
 },
 {
     name: "South Sudan",
-    src: "/assets/data/south_sudan.png"
+    src: "assets/data/south_sudan.png"
 },
 {
     name: "Spain",
-    src: "/assets/data/spain.png"
+    src: "assets/data/spain.png"
 },
 {
     name: "Sri Lanka",
-    src: "/assets/data/srilanka.png"
+    src: "assets/data/srilanka.png"
 },
 {
     name: "Sudan",
-    src: "/assets/data/sudan.png"
+    src: "assets/data/sudan.png"
 },
 {
     name: "Suriname",
-    src: "/assets/data/suriname.png"
+    src: "assets/data/suriname.png"
 },
 {
     name: "Swaziland",
-    src: "/assets/data/swaziland.png"
+    src: "assets/data/swaziland.png"
 },
 {
     name: "Sweden",
-    src: "/assets/data/sweden.png"
+    src: "assets/data/sweden.png"
 },
 {
     name: "Switzerland",
-    src: "/assets/data/switzerland.png"
+    src: "assets/data/switzerland.png"
 },
 {
     name: "Syria",
-    src: "/assets/data/syria.png"
+    src: "assets/data/syria.png"
 },
 {
     name: "Tajikistan",
-    src: "/assets/data/tajikistan.png"
+    src: "assets/data/tajikistan.png"
 },
 {
     name: "Tanzania",
-    src: "/assets/data/tanzania.png"
+    src: "assets/data/tanzania.png"
 },
 {
     name: "Thailand",
-    src: "/assets/data/thailand.png"
+    src: "assets/data/thailand.png"
 },
 {
     name: "The Comoros",
-    src: "/assets/data/the_comoros.png"
+    src: "assets/data/the_comoros.png"
 },
 {
     name: "Togo",
-    src: "/assets/data/togo.png"
+    src: "assets/data/togo.png"
 },
 {
     name: "Tonga",
-    src: "/assets/data/tonga.png"
+    src: "assets/data/tonga.png"
 },
 {
     name: "Trinidad And Tobago",
-    src: "/assets/data/trinidad_and_tobago.png"
+    src: "assets/data/trinidad_and_tobago.png"
 },
 {
     name: "Tunisia",
-    src: "/assets/data/tunisia.png"
+    src: "assets/data/tunisia.png"
 },
 {
     name: "Turkey",
-    src: "/assets/data/turkey.png"
+    src: "assets/data/turkey.png"
 },
 {
     name: "Turkmenistan",
-    src: "/assets/data/turkmenistan.png"
+    src: "assets/data/turkmenistan.png"
 },
 {
     name: "Tuvalu",
-    src: "/assets/data/tuvalu.png"
+    src: "assets/data/tuvalu.png"
 },
 {
     name: "Uganda",
-    src: "/assets/data/uganda.png"
+    src: "assets/data/uganda.png"
 },
 {
     name: "Ukraine",
-    src: "/assets/data/ukraine.png"
+    src: "assets/data/ukraine.png"
 },
 {
     name: "United Arab Emirates",
-    src: "/assets/data/united_arab_emirates.png"
+    src: "assets/data/united_arab_emirates.png"
 },
 {
     name: "United Kingdom",
-    src: "/assets/data/united_kingdom.png"
+    src: "assets/data/united_kingdom.png"
 },
 {
     name: "United States",
-    src: "/assets/data/united_states.png"
+    src: "assets/data/united_states.png"
 },
 {
     name: "Uruguay",
-    src: "/assets/data/uruguay.png"
+    src: "assets/data/uruguay.png"
 },
 {
     name: "Uzbekistan",
-    src: "/assets/data/uzbekistan.png"
+    src: "assets/data/uzbekistan.png"
 },
 {
     name: "Vanuatu",
-    src: "/assets/data/vanuatu.png"
+    src: "assets/data/vanuatu.png"
 },
 {
     name: "Vatican City",
-    src: "/assets/data/vatican_city.png"
+    src: "assets/data/vatican_city.png"
 },
 {
     name: "Venezuela",
-    src: "/assets/data/venezuela.png"
+    src: "assets/data/venezuela.png"
 },
 {
     name: "Vietnam",
-    src: "/assets/data/vietnam.png"
+    src: "assets/data/vietnam.png"
 },
 {
     name: "Western Sahara",
-    src: "/assets/data/western_sahara.png"
+    src: "assets/data/western_sahara.png"
 },
 {
     name: "Yemen",
-    src: "/assets/data/yemen.png"
+    src: "assets/data/yemen.png"
 },
 {
     name: "Zambia",
-    src: "/assets/data/zambia.png"
+    src: "assets/data/zambia.png"
 },
 {
     name: "Zimbabwe",
-    src: "/assets/data/zimbabwe.png"
+    src: "assets/data/zimbabwe.png"
 }
 ];
 
-
+// A class that contains all the functions related to UI updation
 class UiUpdate {
     constructor() {
     }
+    // Function to hide the main menu (game selection page)
     hideMenu() {
         document.querySelector(".menu").style.display = "none";
     }
+    // Function to display the game, when a user selects the game mode.
     viewGame() {
         document.querySelector(".game").style.display = "block";
     }
+    // Function to hide the game when game is over
     hideGame() {
         document.querySelector(".game").style.display = "none";
     }
+    // Function to display the content to be displayed when game is over
     viewEnd() {
         document.querySelector(".end").style.display = "block";
     }
+    // Function to increment and update attempts for game mode "Spray and prey"
     updateAttempts() {
-        // console.log(p1.attempt);
         p1.attempt+=1;
-
         document.querySelector(".attempts").innerText = p1.attempt;
     }
+    // Function to update the game mode in game window when player selects a specific game mode
     updateGameMode(arg) {
         document.querySelector(".game-mode").innerText = arg;
     }
+    // Function Remove
     removeAttempts() {
         document.querySelectorAll(".score-bar span")[3].innerHTML = "";
     }
